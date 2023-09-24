@@ -66,7 +66,34 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(GPIO_Pin);
+  /* NOTE: This function Should not be modified, when the callback is needed,
+           the HAL_GPIO_EXTI_Callback could be implemented in the user file
+   */
+  HAL_UART_Transmit(&huart2, (const uint8_t *)"exti\n", 5, 10);
+}
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(htim);
+  
+  char tx_data[50];
+  if (htim == &htim6) {
+    snprintf(tx_data, 50, "htim6\n");
+  } else if (htim == &htim7) {
+    snprintf(tx_data, 50, "htim7\n");
+  } else {
+    snprintf(tx_data, 50, "timer error: unknown timer\n");
+  }
+  HAL_UART_Transmit(&huart2, (const uint8_t *)tx_data, strlen(tx_data), 10);
 
+  /* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_TIM_PeriodElapsedCallback could be implemented in the user file
+   */
+}
 /* USER CODE END 0 */
 
 /**
@@ -103,7 +130,8 @@ int main(void)
   MX_TIM7_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim6);
+  HAL_TIM_Base_Start_IT(&htim7);
   /* USER CODE END 2 */
 
   /* Infinite loop */

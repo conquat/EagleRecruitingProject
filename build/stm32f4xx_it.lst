@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccIqLSSD.s 			page 1
+ARM GAS  /tmp/cc2hKf0U.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -27,7 +27,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
   24              		.thumb
   25              		.thumb_func
   27              	NMI_Handler:
-  28              	.LFB235:
+  28              	.LFB238:
    1:Core/Src/stm32f4xx_it.c **** /* USER CODE BEGIN Header */
    2:Core/Src/stm32f4xx_it.c **** /**
    3:Core/Src/stm32f4xx_it.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
   28:Core/Src/stm32f4xx_it.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32f4xx_it.c **** 
   30:Core/Src/stm32f4xx_it.c **** /* USER CODE END TD */
-ARM GAS  /tmp/ccIqLSSD.s 			page 2
+ARM GAS  /tmp/cc2hKf0U.s 			page 2
 
 
   31:Core/Src/stm32f4xx_it.c **** 
@@ -118,14 +118,14 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
   77:Core/Src/stm32f4xx_it.c ****   {
   78:Core/Src/stm32f4xx_it.c ****   }
   37              		.loc 1 78 3 discriminator 1 view .LVU2
-ARM GAS  /tmp/ccIqLSSD.s 			page 3
+ARM GAS  /tmp/cc2hKf0U.s 			page 3
 
 
   76:Core/Src/stm32f4xx_it.c ****   {
   38              		.loc 1 76 9 discriminator 1 view .LVU3
   39 0000 FEE7     		b	.L2
   40              		.cfi_endproc
-  41              	.LFE235:
+  41              	.LFE238:
   43              		.section	.text.HardFault_Handler,"ax",%progbits
   44              		.align	1
   45              		.global	HardFault_Handler
@@ -133,7 +133,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
   47              		.thumb
   48              		.thumb_func
   50              	HardFault_Handler:
-  51              	.LFB236:
+  51              	.LFB239:
   79:Core/Src/stm32f4xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 1 */
   80:Core/Src/stm32f4xx_it.c **** }
   81:Core/Src/stm32f4xx_it.c **** 
@@ -163,7 +163,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
   61              		.loc 1 90 9 discriminator 1 view .LVU7
   62 0000 FEE7     		b	.L4
   63              		.cfi_endproc
-  64              	.LFE236:
+  64              	.LFE239:
   66              		.section	.text.MemManage_Handler,"ax",%progbits
   67              		.align	1
   68              		.global	MemManage_Handler
@@ -171,14 +171,14 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
   70              		.thumb
   71              		.thumb_func
   73              	MemManage_Handler:
-  74              	.LFB237:
+  74              	.LFB240:
   95:Core/Src/stm32f4xx_it.c **** }
   96:Core/Src/stm32f4xx_it.c **** 
   97:Core/Src/stm32f4xx_it.c **** /**
   98:Core/Src/stm32f4xx_it.c ****   * @brief This function handles Memory management fault.
   99:Core/Src/stm32f4xx_it.c ****   */
  100:Core/Src/stm32f4xx_it.c **** void MemManage_Handler(void)
-ARM GAS  /tmp/ccIqLSSD.s 			page 4
+ARM GAS  /tmp/cc2hKf0U.s 			page 4
 
 
  101:Core/Src/stm32f4xx_it.c **** {
@@ -203,7 +203,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
   84              		.loc 1 105 9 discriminator 1 view .LVU11
   85 0000 FEE7     		b	.L6
   86              		.cfi_endproc
-  87              	.LFE237:
+  87              	.LFE240:
   89              		.section	.text.BusFault_Handler,"ax",%progbits
   90              		.align	1
   91              		.global	BusFault_Handler
@@ -211,7 +211,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
   93              		.thumb
   94              		.thumb_func
   96              	BusFault_Handler:
-  97              	.LFB238:
+  97              	.LFB241:
  110:Core/Src/stm32f4xx_it.c **** }
  111:Core/Src/stm32f4xx_it.c **** 
  112:Core/Src/stm32f4xx_it.c **** /**
@@ -238,12 +238,12 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  106              		.loc 1 124 3 discriminator 1 view .LVU14
  120:Core/Src/stm32f4xx_it.c ****   {
  107              		.loc 1 120 9 discriminator 1 view .LVU15
-ARM GAS  /tmp/ccIqLSSD.s 			page 5
+ARM GAS  /tmp/cc2hKf0U.s 			page 5
 
 
  108 0000 FEE7     		b	.L8
  109              		.cfi_endproc
- 110              	.LFE238:
+ 110              	.LFE241:
  112              		.section	.text.UsageFault_Handler,"ax",%progbits
  113              		.align	1
  114              		.global	UsageFault_Handler
@@ -251,7 +251,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  116              		.thumb
  117              		.thumb_func
  119              	UsageFault_Handler:
- 120              	.LFB239:
+ 120              	.LFB242:
  125:Core/Src/stm32f4xx_it.c **** }
  126:Core/Src/stm32f4xx_it.c **** 
  127:Core/Src/stm32f4xx_it.c **** /**
@@ -280,7 +280,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  130              		.loc 1 135 9 discriminator 1 view .LVU19
  131 0000 FEE7     		b	.L10
  132              		.cfi_endproc
- 133              	.LFE239:
+ 133              	.LFE242:
  135              		.section	.text.SVC_Handler,"ax",%progbits
  136              		.align	1
  137              		.global	SVC_Handler
@@ -288,7 +288,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  139              		.thumb
  140              		.thumb_func
  142              	SVC_Handler:
- 143              	.LFB240:
+ 143              	.LFB243:
  140:Core/Src/stm32f4xx_it.c **** }
  141:Core/Src/stm32f4xx_it.c **** 
  142:Core/Src/stm32f4xx_it.c **** /**
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  146:Core/Src/stm32f4xx_it.c **** {
  144              		.loc 1 146 1 view -0
  145              		.cfi_startproc
-ARM GAS  /tmp/ccIqLSSD.s 			page 6
+ARM GAS  /tmp/cc2hKf0U.s 			page 6
 
 
  146              		@ args = 0, pretend = 0, frame = 0
@@ -314,7 +314,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  149              		.loc 1 153 1 view .LVU21
  150 0000 7047     		bx	lr
  151              		.cfi_endproc
- 152              	.LFE240:
+ 152              	.LFE243:
  154              		.section	.text.DebugMon_Handler,"ax",%progbits
  155              		.align	1
  156              		.global	DebugMon_Handler
@@ -322,7 +322,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  158              		.thumb
  159              		.thumb_func
  161              	DebugMon_Handler:
- 162              	.LFB241:
+ 162              	.LFB244:
  154:Core/Src/stm32f4xx_it.c **** 
  155:Core/Src/stm32f4xx_it.c **** /**
  156:Core/Src/stm32f4xx_it.c ****   * @brief This function handles Debug monitor.
@@ -344,7 +344,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  168              		.loc 1 166 1 view .LVU23
  169 0000 7047     		bx	lr
  170              		.cfi_endproc
- 171              	.LFE241:
+ 171              	.LFE244:
  173              		.section	.text.PendSV_Handler,"ax",%progbits
  174              		.align	1
  175              		.global	PendSV_Handler
@@ -352,13 +352,13 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  177              		.thumb
  178              		.thumb_func
  180              	PendSV_Handler:
- 181              	.LFB242:
+ 181              	.LFB245:
  167:Core/Src/stm32f4xx_it.c **** 
  168:Core/Src/stm32f4xx_it.c **** /**
  169:Core/Src/stm32f4xx_it.c ****   * @brief This function handles Pendable request for system service.
  170:Core/Src/stm32f4xx_it.c ****   */
  171:Core/Src/stm32f4xx_it.c **** void PendSV_Handler(void)
-ARM GAS  /tmp/ccIqLSSD.s 			page 7
+ARM GAS  /tmp/cc2hKf0U.s 			page 7
 
 
  172:Core/Src/stm32f4xx_it.c **** {
@@ -377,7 +377,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  187              		.loc 1 179 1 view .LVU25
  188 0000 7047     		bx	lr
  189              		.cfi_endproc
- 190              	.LFE242:
+ 190              	.LFE245:
  192              		.section	.text.SysTick_Handler,"ax",%progbits
  193              		.align	1
  194              		.global	SysTick_Handler
@@ -385,7 +385,7 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  196              		.thumb
  197              		.thumb_func
  199              	SysTick_Handler:
- 200              	.LFB243:
+ 200              	.LFB246:
  180:Core/Src/stm32f4xx_it.c **** 
  181:Core/Src/stm32f4xx_it.c **** /**
  182:Core/Src/stm32f4xx_it.c ****   * @brief This function handles System tick timer.
@@ -414,18 +414,18 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  212              		.loc 1 193 1 is_stmt 0 view .LVU28
  213 0006 08BD     		pop	{r3, pc}
  214              		.cfi_endproc
- 215              	.LFE243:
- 217              		.section	.text.TIM6_DAC_IRQHandler,"ax",%progbits
+ 215              	.LFE246:
+ 217              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
  218              		.align	1
- 219              		.global	TIM6_DAC_IRQHandler
-ARM GAS  /tmp/ccIqLSSD.s 			page 8
+ 219              		.global	EXTI15_10_IRQHandler
+ARM GAS  /tmp/cc2hKf0U.s 			page 8
 
 
  220              		.syntax unified
  221              		.thumb
  222              		.thumb_func
- 224              	TIM6_DAC_IRQHandler:
- 225              	.LFB244:
+ 224              	EXTI15_10_IRQHandler:
+ 225              	.LFB247:
  194:Core/Src/stm32f4xx_it.c **** 
  195:Core/Src/stm32f4xx_it.c **** /******************************************************************************/
  196:Core/Src/stm32f4xx_it.c **** /* STM32F4xx Peripheral Interrupt Handlers                                    */
@@ -435,9 +435,9 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  200:Core/Src/stm32f4xx_it.c **** /******************************************************************************/
  201:Core/Src/stm32f4xx_it.c **** 
  202:Core/Src/stm32f4xx_it.c **** /**
- 203:Core/Src/stm32f4xx_it.c ****   * @brief This function handles TIM6 global interrupt and DAC1, DAC2 underrun error interrupts.
+ 203:Core/Src/stm32f4xx_it.c ****   * @brief This function handles EXTI line[15:10] interrupts.
  204:Core/Src/stm32f4xx_it.c ****   */
- 205:Core/Src/stm32f4xx_it.c **** void TIM6_DAC_IRQHandler(void)
+ 205:Core/Src/stm32f4xx_it.c **** void EXTI15_10_IRQHandler(void)
  206:Core/Src/stm32f4xx_it.c **** {
  226              		.loc 1 206 1 is_stmt 1 view -0
  227              		.cfi_startproc
@@ -447,112 +447,157 @@ ARM GAS  /tmp/ccIqLSSD.s 			page 1
  231              		.cfi_def_cfa_offset 8
  232              		.cfi_offset 3, -8
  233              		.cfi_offset 14, -4
- 207:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
+ 207:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
  208:Core/Src/stm32f4xx_it.c **** 
- 209:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM6_DAC_IRQn 0 */
- 210:Core/Src/stm32f4xx_it.c ****   HAL_TIM_IRQHandler(&htim6);
+ 209:Core/Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 0 */
+ 210:Core/Src/stm32f4xx_it.c ****   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
  234              		.loc 1 210 3 view .LVU30
- 235 0002 0248     		ldr	r0, .L18
- 236 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 235 0002 4FF40050 		mov	r0, #8192
+ 236 0006 FFF7FEFF 		bl	HAL_GPIO_EXTI_IRQHandler
  237              	.LVL1:
- 211:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
+ 211:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
  212:Core/Src/stm32f4xx_it.c **** 
- 213:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM6_DAC_IRQn 1 */
+ 213:Core/Src/stm32f4xx_it.c ****   /* USER CODE END EXTI15_10_IRQn 1 */
  214:Core/Src/stm32f4xx_it.c **** }
  238              		.loc 1 214 1 is_stmt 0 view .LVU31
- 239 0008 08BD     		pop	{r3, pc}
- 240              	.L19:
- 241 000a 00BF     		.align	2
- 242              	.L18:
- 243 000c 00000000 		.word	htim6
- 244              		.cfi_endproc
- 245              	.LFE244:
- 247              		.section	.text.TIM7_IRQHandler,"ax",%progbits
- 248              		.align	1
- 249              		.global	TIM7_IRQHandler
- 250              		.syntax unified
- 251              		.thumb
- 252              		.thumb_func
- 254              	TIM7_IRQHandler:
- 255              	.LFB245:
+ 239 000a 08BD     		pop	{r3, pc}
+ 240              		.cfi_endproc
+ 241              	.LFE247:
+ 243              		.section	.text.TIM6_DAC_IRQHandler,"ax",%progbits
+ 244              		.align	1
+ 245              		.global	TIM6_DAC_IRQHandler
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 250              	TIM6_DAC_IRQHandler:
+ 251              	.LFB248:
  215:Core/Src/stm32f4xx_it.c **** 
  216:Core/Src/stm32f4xx_it.c **** /**
- 217:Core/Src/stm32f4xx_it.c ****   * @brief This function handles TIM7 global interrupt.
-ARM GAS  /tmp/ccIqLSSD.s 			page 9
-
-
+ 217:Core/Src/stm32f4xx_it.c ****   * @brief This function handles TIM6 global interrupt and DAC1, DAC2 underrun error interrupts.
  218:Core/Src/stm32f4xx_it.c ****   */
- 219:Core/Src/stm32f4xx_it.c **** void TIM7_IRQHandler(void)
+ 219:Core/Src/stm32f4xx_it.c **** void TIM6_DAC_IRQHandler(void)
  220:Core/Src/stm32f4xx_it.c **** {
- 256              		.loc 1 220 1 is_stmt 1 view -0
- 257              		.cfi_startproc
- 258              		@ args = 0, pretend = 0, frame = 0
- 259              		@ frame_needed = 0, uses_anonymous_args = 0
- 260 0000 08B5     		push	{r3, lr}
- 261              		.cfi_def_cfa_offset 8
- 262              		.cfi_offset 3, -8
- 263              		.cfi_offset 14, -4
- 221:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM7_IRQn 0 */
+ 252              		.loc 1 220 1 is_stmt 1 view -0
+ARM GAS  /tmp/cc2hKf0U.s 			page 9
+
+
+ 253              		.cfi_startproc
+ 254              		@ args = 0, pretend = 0, frame = 0
+ 255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256 0000 08B5     		push	{r3, lr}
+ 257              		.cfi_def_cfa_offset 8
+ 258              		.cfi_offset 3, -8
+ 259              		.cfi_offset 14, -4
+ 221:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
  222:Core/Src/stm32f4xx_it.c **** 
- 223:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM7_IRQn 0 */
- 224:Core/Src/stm32f4xx_it.c ****   HAL_TIM_IRQHandler(&htim7);
- 264              		.loc 1 224 3 view .LVU33
- 265 0002 0248     		ldr	r0, .L22
- 266 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
- 267              	.LVL2:
- 225:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM7_IRQn 1 */
+ 223:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM6_DAC_IRQn 0 */
+ 224:Core/Src/stm32f4xx_it.c ****   HAL_TIM_IRQHandler(&htim6);
+ 260              		.loc 1 224 3 view .LVU33
+ 261 0002 0248     		ldr	r0, .L20
+ 262 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 263              	.LVL2:
+ 225:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
  226:Core/Src/stm32f4xx_it.c **** 
- 227:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM7_IRQn 1 */
+ 227:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM6_DAC_IRQn 1 */
  228:Core/Src/stm32f4xx_it.c **** }
- 268              		.loc 1 228 1 is_stmt 0 view .LVU34
- 269 0008 08BD     		pop	{r3, pc}
- 270              	.L23:
- 271 000a 00BF     		.align	2
- 272              	.L22:
- 273 000c 00000000 		.word	htim7
- 274              		.cfi_endproc
- 275              	.LFE245:
- 277              		.text
- 278              	.Letext0:
- 279              		.file 2 "/home/alessandro/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
- 280              		.file 3 "/home/alessandro/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
- 281              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h"
- 282              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 283              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 284              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 285              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /tmp/ccIqLSSD.s 			page 10
+ 264              		.loc 1 228 1 is_stmt 0 view .LVU34
+ 265 0008 08BD     		pop	{r3, pc}
+ 266              	.L21:
+ 267 000a 00BF     		.align	2
+ 268              	.L20:
+ 269 000c 00000000 		.word	htim6
+ 270              		.cfi_endproc
+ 271              	.LFE248:
+ 273              		.section	.text.TIM7_IRQHandler,"ax",%progbits
+ 274              		.align	1
+ 275              		.global	TIM7_IRQHandler
+ 276              		.syntax unified
+ 277              		.thumb
+ 278              		.thumb_func
+ 280              	TIM7_IRQHandler:
+ 281              	.LFB249:
+ 229:Core/Src/stm32f4xx_it.c **** 
+ 230:Core/Src/stm32f4xx_it.c **** /**
+ 231:Core/Src/stm32f4xx_it.c ****   * @brief This function handles TIM7 global interrupt.
+ 232:Core/Src/stm32f4xx_it.c ****   */
+ 233:Core/Src/stm32f4xx_it.c **** void TIM7_IRQHandler(void)
+ 234:Core/Src/stm32f4xx_it.c **** {
+ 282              		.loc 1 234 1 is_stmt 1 view -0
+ 283              		.cfi_startproc
+ 284              		@ args = 0, pretend = 0, frame = 0
+ 285              		@ frame_needed = 0, uses_anonymous_args = 0
+ 286 0000 08B5     		push	{r3, lr}
+ 287              		.cfi_def_cfa_offset 8
+ 288              		.cfi_offset 3, -8
+ 289              		.cfi_offset 14, -4
+ 235:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM7_IRQn 0 */
+ 236:Core/Src/stm32f4xx_it.c **** 
+ 237:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM7_IRQn 0 */
+ 238:Core/Src/stm32f4xx_it.c ****   HAL_TIM_IRQHandler(&htim7);
+ 290              		.loc 1 238 3 view .LVU36
+ 291 0002 0248     		ldr	r0, .L24
+ 292 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 293              	.LVL3:
+ARM GAS  /tmp/cc2hKf0U.s 			page 10
+
+
+ 239:Core/Src/stm32f4xx_it.c ****   /* USER CODE BEGIN TIM7_IRQn 1 */
+ 240:Core/Src/stm32f4xx_it.c **** 
+ 241:Core/Src/stm32f4xx_it.c ****   /* USER CODE END TIM7_IRQn 1 */
+ 242:Core/Src/stm32f4xx_it.c **** }
+ 294              		.loc 1 242 1 is_stmt 0 view .LVU37
+ 295 0008 08BD     		pop	{r3, pc}
+ 296              	.L25:
+ 297 000a 00BF     		.align	2
+ 298              	.L24:
+ 299 000c 00000000 		.word	htim7
+ 300              		.cfi_endproc
+ 301              	.LFE249:
+ 303              		.text
+ 304              	.Letext0:
+ 305              		.file 2 "/home/alessandro/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+ 306              		.file 3 "/home/alessandro/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/ar
+ 307              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h"
+ 308              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 309              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 310              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 311              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 312              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ARM GAS  /tmp/cc2hKf0U.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_it.c
-     /tmp/ccIqLSSD.s:21     .text.NMI_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:27     .text.NMI_Handler:00000000 NMI_Handler
-     /tmp/ccIqLSSD.s:44     .text.HardFault_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:50     .text.HardFault_Handler:00000000 HardFault_Handler
-     /tmp/ccIqLSSD.s:67     .text.MemManage_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:73     .text.MemManage_Handler:00000000 MemManage_Handler
-     /tmp/ccIqLSSD.s:90     .text.BusFault_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:96     .text.BusFault_Handler:00000000 BusFault_Handler
-     /tmp/ccIqLSSD.s:113    .text.UsageFault_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:119    .text.UsageFault_Handler:00000000 UsageFault_Handler
-     /tmp/ccIqLSSD.s:136    .text.SVC_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:142    .text.SVC_Handler:00000000 SVC_Handler
-     /tmp/ccIqLSSD.s:155    .text.DebugMon_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:161    .text.DebugMon_Handler:00000000 DebugMon_Handler
-     /tmp/ccIqLSSD.s:174    .text.PendSV_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:180    .text.PendSV_Handler:00000000 PendSV_Handler
-     /tmp/ccIqLSSD.s:193    .text.SysTick_Handler:00000000 $t
-     /tmp/ccIqLSSD.s:199    .text.SysTick_Handler:00000000 SysTick_Handler
-     /tmp/ccIqLSSD.s:218    .text.TIM6_DAC_IRQHandler:00000000 $t
-     /tmp/ccIqLSSD.s:224    .text.TIM6_DAC_IRQHandler:00000000 TIM6_DAC_IRQHandler
-     /tmp/ccIqLSSD.s:243    .text.TIM6_DAC_IRQHandler:0000000c $d
-     /tmp/ccIqLSSD.s:248    .text.TIM7_IRQHandler:00000000 $t
-     /tmp/ccIqLSSD.s:254    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
-     /tmp/ccIqLSSD.s:273    .text.TIM7_IRQHandler:0000000c $d
+     /tmp/cc2hKf0U.s:21     .text.NMI_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:27     .text.NMI_Handler:00000000 NMI_Handler
+     /tmp/cc2hKf0U.s:44     .text.HardFault_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:50     .text.HardFault_Handler:00000000 HardFault_Handler
+     /tmp/cc2hKf0U.s:67     .text.MemManage_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:73     .text.MemManage_Handler:00000000 MemManage_Handler
+     /tmp/cc2hKf0U.s:90     .text.BusFault_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:96     .text.BusFault_Handler:00000000 BusFault_Handler
+     /tmp/cc2hKf0U.s:113    .text.UsageFault_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:119    .text.UsageFault_Handler:00000000 UsageFault_Handler
+     /tmp/cc2hKf0U.s:136    .text.SVC_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:142    .text.SVC_Handler:00000000 SVC_Handler
+     /tmp/cc2hKf0U.s:155    .text.DebugMon_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:161    .text.DebugMon_Handler:00000000 DebugMon_Handler
+     /tmp/cc2hKf0U.s:174    .text.PendSV_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:180    .text.PendSV_Handler:00000000 PendSV_Handler
+     /tmp/cc2hKf0U.s:193    .text.SysTick_Handler:00000000 $t
+     /tmp/cc2hKf0U.s:199    .text.SysTick_Handler:00000000 SysTick_Handler
+     /tmp/cc2hKf0U.s:218    .text.EXTI15_10_IRQHandler:00000000 $t
+     /tmp/cc2hKf0U.s:224    .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
+     /tmp/cc2hKf0U.s:244    .text.TIM6_DAC_IRQHandler:00000000 $t
+     /tmp/cc2hKf0U.s:250    .text.TIM6_DAC_IRQHandler:00000000 TIM6_DAC_IRQHandler
+     /tmp/cc2hKf0U.s:269    .text.TIM6_DAC_IRQHandler:0000000c $d
+     /tmp/cc2hKf0U.s:274    .text.TIM7_IRQHandler:00000000 $t
+     /tmp/cc2hKf0U.s:280    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
+     /tmp/cc2hKf0U.s:299    .text.TIM7_IRQHandler:0000000c $d
 
 UNDEFINED SYMBOLS
 HAL_IncTick
+HAL_GPIO_EXTI_IRQHandler
 HAL_TIM_IRQHandler
 htim6
 htim7
