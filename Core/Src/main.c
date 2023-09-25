@@ -49,7 +49,16 @@ TIM_HandleTypeDef htim7;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+typedef enum{
+  STATE_RUNNING,
+  STATE_WAITING,
+  NUM_STATES
+} State_t;
 
+typedef struct{
+  State_t state;
+  void (*func)(void);
+} StateMachine_t;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -66,33 +75,82 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+State_t cur_state = STATE_RUNNING;
+uint8_t emergency_int = 0;
+uint8_t check_sys_voltage = 0;
+uint8_t check_sensor = 0;
+unsigned long last_message_time = 0;
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   /* Prevent unused argument(s) compilation warning */
   UNUSED(GPIO_Pin);
-  /* NOTE: This function Should not be modified, when the callback is needed,
-           the HAL_GPIO_EXTI_Callback could be implemented in the user file
-   */
-  HAL_UART_Transmit(&huart2, (const uint8_t *)"exti\n", 5, 10);
+  emergency_int = 1;
 }
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* Prevent unused argument(s) compilation warning */
   UNUSED(htim);
   
-  char tx_data[50];
   if (htim == &htim6) {
-    snprintf(tx_data, 50, "htim6\n");
+    check_sensor = 1;
   } else if (htim == &htim7) {
-    snprintf(tx_data, 50, "htim7\n");
+    check_sys_voltage = 1;
   } else {
-    snprintf(tx_data, 50, "timer error: unknown timer\n");
+    HAL_UART_Transmit(&huart2, (const uint8_t *)"timer error: unknown timer\n", 27, 100);
   }
-  HAL_UART_Transmit(&huart2, (const uint8_t *)tx_data, strlen(tx_data), 10);
+}
 
-  /* NOTE : This function should not be modified, when the callback is needed,
-            the HAL_TIM_PeriodElapsedCallback could be implemented in the user file
-   */
+void fn_StateRunning(void) {
+  if (emergency_int) {
+    emergency_int = 0;
+    cur_state = STATE_WAITING;
+    last_message_time = 0;
+    HAL_TIM_Base_Stop_IT(&htim6);
+    HAL_TIM_Base_Stop_IT(&htim7);
+  }
+
+  if (check_sys_voltage) {
+    check_sys_voltage = 0;
+    HAL_UART_Transmit(&huart2, (const uint8_t *)"check sys v\n", 12, 100);
+  }
+
+  if (check_sensor) {
+    check_sensor = 0;
+    HAL_UART_Transmit(&huart2, (const uint8_t *)"check sensor\n", 13, 100);
+  }
+}
+
+void fn_StateWaiting(void) {
+  if (emergency_int) {
+    emergency_int = 0;
+    cur_state = STATE_RUNNING;
+    HAL_TIM_Base_Start_IT(&htim6);
+    HAL_TIM_Base_Start_IT(&htim7);
+    check_sys_voltage = 0;
+    check_sensor = 0;
+  }
+
+  if (HAL_GetTick() - last_message_time > 500) {
+    last_message_time = HAL_GetTick();
+    HAL_UART_Transmit(&huart2, (const uint8_t *)"Board in waiting state - please press the emergency button\n", 59, 100);
+  }
+  
+}
+
+StateMachine_t StateMachine[] = {
+  {STATE_RUNNING, fn_StateRunning},
+  {STATE_WAITING, fn_StateWaiting}
+} ;
+
+void FSM_run(void){
+  if(cur_state < NUM_STATES){
+    (*StateMachine[cur_state].func)();
+  }
+  else{
+    HAL_UART_Transmit(&huart2, (const uint8_t *)"FSM error\n", 10, 100);
+  }
 }
 /* USER CODE END 0 */
 
@@ -132,6 +190,11 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim6);
   HAL_TIM_Base_Start_IT(&htim7);
+
+  cur_state = STATE_RUNNING;
+  emergency_int = 0;
+  check_sys_voltage = 0;
+  check_sensor = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -139,7 +202,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    FSM_run();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
