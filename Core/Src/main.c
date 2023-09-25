@@ -49,16 +49,7 @@ TIM_HandleTypeDef htim7;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-typedef enum{
-  STATE_RUNNING,
-  STATE_WAITING,
-  NUM_STATES
-} State_t;
 
-typedef struct{
-  State_t state;
-  void (*func)(void);
-} StateMachine_t;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,8 +68,8 @@ static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN 0 */
 State_t cur_state = STATE_RUNNING;
 uint8_t emergency_int = 0;
-uint8_t check_sys_voltage = 0;
-uint8_t check_sensor = 0;
+uint8_t check_sys_voltage_int = 0;
+uint8_t check_sensor_int = 0;
 unsigned long last_message_time = 0;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -92,14 +83,33 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* Prevent unused argument(s) compilation warning */
   UNUSED(htim);
-  
+
   if (htim == &htim6) {
-    check_sensor = 1;
+    check_sensor_int = 1;
   } else if (htim == &htim7) {
-    check_sys_voltage = 1;
+    check_sys_voltage_int = 1;
   } else {
     HAL_UART_Transmit(&huart2, (const uint8_t *)"timer error: unknown timer\n", 27, 100);
   }
+}
+
+void checkSensor(void) {
+  int16_t sensor_value = 0;
+  HAL_ADC_Start(&hadc1);
+  if (HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK) {
+    sensor_value = HAL_ADC_GetValue(&hadc1);
+  }
+  HAL_ADC_Stop(&hadc1);
+  char tx_data[50];
+  float force = (float)(sensor_value - 1265) / 2830.0 * 1500.0;
+  snprintf(tx_data, 50, "force: %f\n", force);
+  HAL_UART_Transmit(&huart2, (const uint8_t *)tx_data, strlen(tx_data), 100);
+}
+
+void checkSystemVoltage(void) {
+  char tx_data[50];
+  snprintf(tx_data, 50, "check sys v\n");
+  HAL_UART_Transmit(&huart2, (const uint8_t *)tx_data, strlen(tx_data), 100);
 }
 
 void fn_StateRunning(void) {
@@ -111,14 +121,14 @@ void fn_StateRunning(void) {
     HAL_TIM_Base_Stop_IT(&htim7);
   }
 
-  if (check_sys_voltage) {
-    check_sys_voltage = 0;
-    HAL_UART_Transmit(&huart2, (const uint8_t *)"check sys v\n", 12, 100);
+  if (check_sys_voltage_int) {
+    check_sys_voltage_int = 0;
+    checkSystemVoltage();
   }
 
-  if (check_sensor) {
-    check_sensor = 0;
-    HAL_UART_Transmit(&huart2, (const uint8_t *)"check sensor\n", 13, 100);
+  if (check_sensor_int) {
+    check_sensor_int = 0;
+    checkSensor();
   }
 }
 
@@ -128,8 +138,8 @@ void fn_StateWaiting(void) {
     cur_state = STATE_RUNNING;
     HAL_TIM_Base_Start_IT(&htim6);
     HAL_TIM_Base_Start_IT(&htim7);
-    check_sys_voltage = 0;
-    check_sensor = 0;
+    check_sys_voltage_int = 0;
+    check_sensor_int = 0;
   }
 
   if (HAL_GetTick() - last_message_time > 500) {
@@ -193,8 +203,8 @@ int main(void)
 
   cur_state = STATE_RUNNING;
   emergency_int = 0;
-  check_sys_voltage = 0;
-  check_sensor = 0;
+  check_sys_voltage_int = 0;
+  check_sensor_int = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */

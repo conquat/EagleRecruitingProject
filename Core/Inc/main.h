@@ -28,17 +28,25 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
-#include "stdio.h"
-#include "string.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+typedef enum{
+  STATE_RUNNING,
+  STATE_WAITING,
+  NUM_STATES
+} State_t;
 
+typedef struct{
+  State_t state;
+  void (*func)(void);
+} StateMachine_t;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
