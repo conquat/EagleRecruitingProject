@@ -40,6 +40,7 @@ extern "C" {
 typedef enum{
   STATE_RUNNING,
   STATE_WAITING,
+  STATE_DANGER,
   NUM_STATES
 } State_t;
 

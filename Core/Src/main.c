@@ -67,9 +67,9 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 State_t cur_state = STATE_RUNNING;
-uint8_t emergency_int = 0;
-uint8_t check_sys_voltage_int = 0;
-uint8_t check_sensor_int = 0;
+volatile uint8_t emergency_int = 0;
+volatile uint8_t check_sys_voltage_int = 0;
+volatile uint8_t check_sensor_int = 0;
 unsigned long last_message_time = 0;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -102,14 +102,18 @@ void checkSensor(void) {
   HAL_ADC_Stop(&hadc1);
   char tx_data[50];
   float force = (float)(sensor_value - 1265) / 2830.0 * 1500.0;
-  snprintf(tx_data, 50, "force: %f\n", force);
+  snprintf(tx_data, 50, "%lu force: %f\n", HAL_GetTick(), force);
   HAL_UART_Transmit(&huart2, (const uint8_t *)tx_data, strlen(tx_data), 100);
 }
 
-void checkSystemVoltage(void) {
-  char tx_data[50];
-  snprintf(tx_data, 50, "check sys v\n");
-  HAL_UART_Transmit(&huart2, (const uint8_t *)tx_data, strlen(tx_data), 100);
+float checkSystemVoltage(void) {
+  float system_voltage = 0.0;
+  HAL_ADC_Start(&hadc2);
+  if (HAL_ADC_PollForConversion(&hadc2, 10) == HAL_OK) {
+    system_voltage = (float)HAL_ADC_GetValue(&hadc2) / 4095.0 * 5.0;
+  }
+  HAL_ADC_Stop(&hadc2);
+  return system_voltage;
 }
 
 void fn_StateRunning(void) {
@@ -123,7 +127,20 @@ void fn_StateRunning(void) {
 
   if (check_sys_voltage_int) {
     check_sys_voltage_int = 0;
-    checkSystemVoltage();
+    float system_voltage = checkSystemVoltage();
+    char tx_data[50];
+    snprintf(tx_data, 50, "%lu system voltage: %fV\n", HAL_GetTick(), system_voltage);
+    HAL_UART_Transmit(&huart2, (const uint8_t *)tx_data, strlen(tx_data), 100);
+    if (system_voltage < 1.8 || system_voltage > 2.7) {
+      cur_state = STATE_DANGER;
+      if (system_voltage < 1.8) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 1);
+      } else {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 0);
+      }
+    }
   }
 
   if (check_sensor_int) {
@@ -146,12 +163,46 @@ void fn_StateWaiting(void) {
     last_message_time = HAL_GetTick();
     HAL_UART_Transmit(&huart2, (const uint8_t *)"Board in waiting state - please press the emergency button\n", 59, 100);
   }
-  
+}
+
+void fn_StateDanger(void) {
+  if (emergency_int) {
+    emergency_int = 0;
+    cur_state = STATE_WAITING;
+    last_message_time = 0;
+    HAL_TIM_Base_Stop_IT(&htim6);
+    HAL_TIM_Base_Stop_IT(&htim7);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 0);
+  }
+
+  if (check_sys_voltage_int) {
+    check_sys_voltage_int = 0;
+    float system_voltage = checkSystemVoltage();
+    char tx_data[50];
+    snprintf(tx_data, 50, "%lu system voltage: %fV\n", HAL_GetTick(), system_voltage);
+    HAL_UART_Transmit(&huart2, (const uint8_t *)tx_data, strlen(tx_data), 100);
+    if (system_voltage < 1.8) {
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 1);
+    } else if (system_voltage > 2.7) {
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 0);
+    } else {
+      cur_state = STATE_RUNNING;
+    }
+  }
+
+  if (check_sensor_int) {
+    check_sensor_int = 0;
+    checkSensor();
+  }
 }
 
 StateMachine_t StateMachine[] = {
   {STATE_RUNNING, fn_StateRunning},
-  {STATE_WAITING, fn_StateWaiting}
+  {STATE_WAITING, fn_StateWaiting},
+  {STATE_DANGER, fn_StateDanger}
 } ;
 
 void FSM_run(void){
